@@ -1,0 +1,9 @@
+LICENSE
+pyproject.toml
+setup.cfg
+src/ml_analytics/__init__.py
+src/ml_analytics/main.py
+src/ml_analytics.egg-info/PKG-INFO
+src/ml_analytics.egg-info/SOURCES.txt
+src/ml_analytics.egg-info/dependency_links.txt
+src/ml_analytics.egg-info/top_level.txt
