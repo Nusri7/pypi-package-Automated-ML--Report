@@ -5,42 +5,50 @@
 
 # Automated-ML-Report
 
+Author : Ahamed Nusri <br>
+email  : 321nusri@gmail.com <br>
+GitHub : https://github.com/Nusri7 <br>
+
 ![PyPI Version](https://img.shields.io/pypi/v/eda-report.svg)
 ![License](https://img.shields.io/pypi/l/eda-report.svg)
 ![Python Versions](https://img.shields.io/pypi/pyversions/eda-report.svg)
 
-Automated-ML-Report is a Python package designed to simplify the process of generating automated machine learning reports. It aims to provide a user-friendly interface for creating insightful reports based on the results of various automated machine learning experiments.
+Automated-ML-Report is a Python package designed to simplify the process of generating automated Exploratory data analysis and machine learning reports. It aims to provide a user-friendly interface for creating insightful reports based on the results of various automated machine-learning experiments.
 
 ## Installation
 
 You can install Automated-ML-Report using `pip`:
 
 ```
-pip install automated-ml-report
+pip install -i https://test.pypi.org/simple/ ml-analytics-report==13.0.0
 ```
 
-Features
-Streamline the process of creating reports for automated machine-learning experiments.
-Generate detailed and visually appealing reports to communicate experiment results effectively.
-Customize report content, style, and format to suit your needs.
-Quick Start
+## Features
+<ul>
+  <li>Streamline the process of creating reports for automated machine-learning experiments.</li>
+  <li>Generate detailed and visually appealing reports to communicate experiment results effectively.</li>
+  <li>Customize report content, style, and format to suit your needs.</li>
+</ul>
+
+
+## Quick Start
 Import the necessary modules:
 
 ```
-from automated_ml_report import AutomatedMLReport
+from ml_analytics import ModelReport
 ```
 
-Create an instance of AutomatedMLReport by providing experiment data:
+## Create an instance of AutomatedMLReport by providing experiment data:
 
 ```
 report = AutomatedMLReport(experiment_data)
 ```
 
-Generate the automated ML report:
+## Generate the automated ML report:
 ```
 report.generate_report(output_path="experiment_report.html")
 ```
-Usage
+## Usage
 The following example demonstrates a basic usage scenario:
 ```
 from automated_ml_report import AutomatedMLReport
@@ -55,19 +63,68 @@ report = AutomatedMLReport(experiment_data)
 report.generate_report(output_path="experiment_report.html")
 ```
 
+# EDA Report
+
+EDA Report is a Python package that simplifies the process of creating exploratory data analysis (EDA) reports. It offers an intuitive way to generate comprehensive reports for understanding and visualizing dataset characteristics.
+
+## Installation
+You can install EDA Report using pip:
+```
+pip install eda-report
+```
+
+
+## Features
+
+<ul>
+  <li>Streamline the process of creating reports for automated machine-learning experiments.</li>
+  <li>Generate detailed and visually appealing reports to communicate experiment results effectively.</li>
+  <li>Customize report content, style, and format to suit your needs.</li>
+</ul>
+
+
+## Quick Start
+Import the necessary modules:
+
+```
+from ml_analytics import EDAReport
+```
+
+## Create an instance of AutomatedMLReport by providing experiment data:
+
+```
+report = EDAReport.EDA()
+```
+
+## Generate the automated ML report:
+```
+report.eda_report(df,y)
+```
+## Usage
+The following example demonstrates a basic usage scenario:
+```
+from ml_analytics import EDAReport
+
+# Load experiment data (replace with your data loading code)
+report = EDAReport.EDA()
+
+# Create a report instance
+report = AutomatedMLReport(experiment_data)
+
+# Generate the report
+report.generate_report(output_path="experiment_report.html")
+```
 For more advanced usage and customization options, please refer to the documentation.
 
-Documentation
-For detailed information about how to use Automated-ML-Report, refer to the documentation.
+## Documentation
+For detailed information about how to use Automated-ML-Report, refer to the documentation. Documentation will be uploaded soon.
 
-License
+## License
 This project is licensed under the MIT License.
 
-Contact
-If you have any questions, suggestions, or feedback, please contact us at your.email@example.com.
+## Contact
+If you have any questions, suggestions, or feedback, please contact us at your 321nusri@gmail.com.
 
 
-Replace the placeholders such as `experiment_data`, `link-to-documentation`, and `your.email@example.com` with actual content relevant to your package. You should also include the license file (`LICENSE`) and any other relevant files in your GitHub repository.
 
-Remember to keep the README clear, concise, and informative, making it easy for users to understand and start using your package.
 
