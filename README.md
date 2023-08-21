@@ -20,7 +20,7 @@ Automated-ML-Report is a Python package designed to simplify the process of gene
 You can install Automated-ML-Report using `pip`:
 
 ```
-pip install -i https://test.pypi.org/simple/ ml-analytics-report==13.0.0
+pip install -i https://test.pypi.org/simple/ Automated-ML-Report==1.0.0
 ```
 
 ## Features
@@ -35,32 +35,30 @@ pip install -i https://test.pypi.org/simple/ ml-analytics-report==13.0.0
 Import the necessary modules:
 
 ```
-from ml_analytics import ModelReport
+from Automated-ML-Report import ModelReport
 ```
 
 ## Create an instance of AutomatedMLReport by providing experiment data:
 
 ```
-report = AutomatedMLReport(experiment_data)
+report = ModelReport.ModelReport()
 ```
 
 ## Generate the automated ML report:
 ```
-report.generate_report(output_path="experiment_report.html")
+report.mlReport(df,x,y, model_type)
 ```
 ## Usage
 The following example demonstrates a basic usage scenario:
 ```
-from automated_ml_report import AutomatedMLReport
+from Automated-ML-Report import ModelReport
 
-# Load experiment data (replace with your data loading code)
-experiment_data = load_experiment_data()
+# Creating an object from ModelReport class
+report = ModelReport.ModelReport()
 
-# Create a report instance
-report = AutomatedMLReport(experiment_data)
+# Calling the mlReport function
+report.mlReport(df,["Embarked","Parch","SibSp","Age","Sex","Pclass"],"Survived", "Classification")
 
-# Generate the report
-report.generate_report(output_path="experiment_report.html")
 ```
 
 # EDA Report
@@ -70,7 +68,7 @@ EDA Report is a Python package that simplifies the process of creating explorato
 ## Installation
 You can install EDA Report using pip:
 ```
-pip install eda-report
+pip install -i https://test.pypi.org/simple/ Automated-ML-Report==1.0.0
 ```
 
 
@@ -87,7 +85,7 @@ pip install eda-report
 Import the necessary modules:
 
 ```
-from ml_analytics import EDAReport
+from Automated-ML-Report import EDAReport
 ```
 
 ## Create an instance of AutomatedMLReport by providing experiment data:
@@ -103,16 +101,14 @@ report.eda_report(df,y)
 ## Usage
 The following example demonstrates a basic usage scenario:
 ```
-from ml_analytics import EDAReport
+from Automated-ML-Report import EDAReport
 
 # Load experiment data (replace with your data loading code)
 report = EDAReport.EDA()
 
-# Create a report instance
-report = AutomatedMLReport(experiment_data)
+# Calling the mlReport function
+report.edaReport(df,"Survived")
 
-# Generate the report
-report.generate_report(output_path="experiment_report.html")
 ```
 For more advanced usage and customization options, please refer to the documentation.
 
