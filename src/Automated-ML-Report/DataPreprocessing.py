@@ -5,11 +5,17 @@ import seaborn as sns
 import scipy.stats as stats
 
 class DataPreprocessing :
+
+    import numpy as np
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    import scipy.stats as stats
     def __init__(self, df):
         self.df = df
 
     #Check missing value 
-    def check_missing_value(self):
+    def check_missing_value(self,df):
         """ Check missing value """
 
         def __str__(self):
@@ -21,7 +27,7 @@ class DataPreprocessing :
         return check_missing
 
     #Check duplicate value
-    def duplicate_value(self):
+    def duplicate_value(self,df):
 
         """ Check duplicate value """
         check_duplicate = df.duplicated().sum()
@@ -50,30 +56,37 @@ class DataPreprocessing :
             df[column] = imputer.fit_transform(df[[column]])
         else:
             print('Please choose the method')
+
+    ##Handling missing value for all columns automatically with KNNImputer only
+    def missing_value_handling_all(self,df):
+        """ Handling missing value for all columns automatically with KNNImputer only """
+        if method == 'KNNImputer':
+            from sklearn.impute import KNNImputer
+            imputer = KNNImputer(n_neighbors=5)
+            df = imputer.fit_transform(df)
+        else:
+            print('Please choose the method')
+
+
             
-    #Label Encoding for Object datatype column
-    def label_encoding(self, column):
-        """ Label Encoding for Object datatype column """
+    #Label Encoding for Object datatype all columns automatically
+    def label_encoding_all(self,df):
+        """ Label Encoding for Object datatype all columns automatically """
         from sklearn.preprocessing import LabelEncoder
+        le = LabelEncoder()
+        for col in df.columns:
+            if df[col].dtype == 'object':
+                df[col] = le.fit_transform(df[col])
+        return df
 
-        # Initialize a LabelEncoder object
-        label_encoder = LabelEncoder()
-
-        # Fit the encoder to the unique values in the column
-        label_encoder.fit(df[column].unique())
-
-        # Transform the column using the encoder
-        df[column] = label_encoder.transform(df[column])
-
-        # Print the column name and the unique encoded values
-        print (f"{column}: {df[column].unique()}") 
 
     #One Hot Encoding for Object datatype column
-    def one_hot_encoding(self, column):
+    def one_hot_encoding(self, df):
         """ One Hot Encoding for Object datatype column """
         # Create dummy variables using pandas
-        df = pd.get_dummies(df, columns=[column], prefix=column, drop_first=True)
-        return df
+        for col in df.column:
+            if df[col].dtype == 'object':
+                df = pd.get_dummies(df, columns=[col], prefix=[col])
 
     #Perform one hot encoding for multicategorical column select top 10
     def one_hot_encoding_top10(self, column):
@@ -85,7 +98,7 @@ class DataPreprocessing :
         return df
         
     #Correlation Heatmap for all columns
-    def correlation_heatmap(self):
+    def correlation_heatmap(self,df):
         """ Correlation Heatmap for all columns """
         corr = df.corr()
         plt.figure(figsize=(18, 12))
@@ -93,12 +106,13 @@ class DataPreprocessing :
         plt.show()
         
     #Remove column with correlation value more than 0.9
-    def remove_column_with_high_corr(self):
+    def remove_column_with_high_corr(self,df):
         """ Remove column with correlation value more than 0.9 """
         corr = df.corr()
         upper = corr.where(np.triu(np.ones(corr.shape), k=1).astype(np.bool))
         to_drop = [column for column in upper.columns if any(upper[column] > 0.9)]
         df.drop(to_drop, axis=1, inplace=True)
+        print("Columns dropped: ", to_drop)
         
     
     

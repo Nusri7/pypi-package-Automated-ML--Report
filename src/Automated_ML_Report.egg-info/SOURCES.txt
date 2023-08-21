@@ -1,0 +1,15 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/Automated-ML-Report/DataPreprocessing.py
+src/Automated-ML-Report/EDA.PY
+src/Automated-ML-Report/EDAReport.py
+src/Automated-ML-Report/ModelReport.py
+src/Automated-ML-Report/ModelTrain.py
+src/Automated-ML-Report/__init__.py
+src/Automated-ML-Report/main.py
+src/Automated_ML_Report.egg-info/PKG-INFO
+src/Automated_ML_Report.egg-info/SOURCES.txt
+src/Automated_ML_Report.egg-info/dependency_links.txt
+src/Automated_ML_Report.egg-info/top_level.txt

@@ -51,30 +51,33 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_squared_log_error
 from sklearn.metrics import median_absolute_error
 from sklearn.metrics import r2_score
-
+from sklearn.model_selection import train_test_split
 
 class ModelTrain:
-    def __init__(self, df, x, y, test_size, random_state):
+    def __init__(self, df, x, y, test_size):
         self.df = pd.DataFrame(df)
         self.x = x
         self.y = y
         self.test_size = test_size
-        self.random_state = random_state
+        
         
 
     #Splitting the dataset into the Training set and Test set
-    def split(self):
-        from sklearn.model_selection import train_test_split
+    def split(self,df):
+        
 
         x= self.df[self.x]
         y= self.df[self.y]
         
-        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = self.random_state)
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         return X_train, X_test, y_train, y_test
 
     #Remove the Outlier from train data using ZScore method
-    def outlier_zscore(self):
-        X_train, X_test, y_train, y_test = self.split()
+    def outlier_zscore(self,df):
+        x= self.df[self.x]
+        y= self.df[self.y]
+        
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         from scipy import stats
         z = np.abs(stats.zscore(X_train))
         print(z)
@@ -84,8 +87,11 @@ class ModelTrain:
         return X_train
 
     #Remove the Outlier from train data using IQR method
-    def outlier_iqr(self):
-        X_train, X_test, y_train, y_test = self.split()
+    def outlier_iqr(self,df):
+        x= self.df[self.x]
+        y= self.df[self.y]
+        
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         Q1 = X_train.quantile(0.25)
         Q3 = X_train.quantile(0.75)
         IQR = Q3 - Q1
@@ -95,79 +101,106 @@ class ModelTrain:
         return X_train
 
     #Remove the Outlier from train data using Isolation Forest method
-    def outlier_isolation(self):
-        X_train, X_test, y_train, y_test = self.split()
+    def outlier_isolation(self,df):
+        x= self.df[self.x]
+        y= self.df[self.y]
+        
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         from sklearn.ensemble import IsolationForest
         clf = IsolationForest(random_state=0).fit(X_train)
         X_train = X_train[clf.predict(X_train) == 1]
         return X_train
 
     #Perform the feature scaling on train data
-    def feature_scaling(self):
-        X_train, X_test, y_train, y_test = self.split()
+    def feature_scaling(self,df):
+        x= self.df[self.x]
+        y= self.df[self.y]
+        
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         from sklearn.preprocessing import StandardScaler
         sc = StandardScaler()
         X_train = sc.fit_transform(X_train)
         return X_train
 
     #Perform the feature scaling on test data
-    def feature_scaling_test(self):
-        X_train, X_test, y_train, y_test = self.split()
+    def feature_scaling_test(self,df):
+        x= self.df[self.x]
+        y= self.df[self.y]
+        
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         from sklearn.preprocessing import StandardScaler
         sc = StandardScaler()
         X_test = sc.transform(X_test)
         return X_test
 
     #Perform the feature scaling on train data using MinMaxScaler
-    def feature_scaling_minmax(self):
-        X_train, X_test, y_train, y_test = self.split()
+    def feature_scaling_minmax(self,df):
+        x= self.df[self.x]
+        y= self.df[self.y]
+        
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         from sklearn.preprocessing import MinMaxScaler
         sc = MinMaxScaler()
         X_train = sc.fit_transform(X_train)
         return X_train
 
     #Perform the feature scaling on test data using MinMaxScaler
-    def feature_scaling_minmax_test(self):
-        X_train, X_test, y_train, y_test = self.split()
+    def feature_scaling_minmax_test(self,df):
+        x= self.df[self.x]
+        y= self.df[self.y]
+        
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         from sklearn.preprocessing import MinMaxScaler
         sc = MinMaxScaler()
         X_test = sc.transform(X_test)
         return X_test
 
     #Perform the feature scaling on train data using RobustScaler
-    def feature_scaling_robust(self):
-        X_train, X_test, y_train, y_test = self.split()
+    def feature_scaling_robust(self,df):
+        x= self.df[self.x]
+        y= self.df[self.y]
+        
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         from sklearn.preprocessing import RobustScaler
         sc = RobustScaler()
         X_train = sc.fit_transform(X_train)
         return X_train
 
     #Perform the feature scaling on test data using RobustScaler
-    def feature_scaling_robust_test(self):
-        X_train, X_test, y_train, y_test = self.split()
+    def feature_scaling_robust_test(self,df):
+        x= self.df[self.x]
+        y= self.df[self.y]
+        
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         from sklearn.preprocessing import RobustScaler
         sc = RobustScaler()
         X_test = sc.transform(X_test)
         return X_test
 
     #Perform the feature scaling on train data using Normalizer
-    def feature_scaling_normalizer(self):
-        X_train, X_test, y_train, y_test = self.split()
+    def feature_scaling_normalizer(self,df):
+        x= self.df[self.x]
+        y= self.df[self.y]
+        
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         from sklearn.preprocessing import Normalizer
         sc = Normalizer()
         X_train = sc.fit_transform(X_train)
         return X_train
 
     #Perform the feature scaling on test data using Normalizer
-    def feature_scaling_normalizer_test(self):
-        X_train, X_test, y_train, y_test = self.split()
+    def feature_scaling_normalizer_test(self,df):
+        x= self.df[self.x]
+        y= self.df[self.y]
+        
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         from sklearn.preprocessing import Normalizer
         sc = Normalizer()
         X_test = sc.transform(X_test)
         return X_test
 
     #Perform all the machine learning algorithm based on regression and classification print the all the metrics and plot the graph  and return the best three model
-    def model_train(self):
+    def model_train(self,df):
         """ Perform all the machine learning algorithm based on regression and classification print the all the metrics and plot the graph  and return the best three model """
         
         ##create a list of all the model with regreesion and classification separately
@@ -186,7 +219,10 @@ class ModelTrain:
         model_rmse = []
 
         ##create a loop to iterate all the model fit and print the metrics and plot the graph
-        X_train, X_test, y_train, y_test = self.split()
+        x= self.df[self.x]
+        y= self.df[self.y]
+        
+        X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = self.test_size, random_state = 30)
         for i in range(len(model_list)):
             model = model_list[i]
             model.fit(X_train,y_train)
